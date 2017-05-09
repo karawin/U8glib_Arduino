@@ -38,7 +38,13 @@
 #ifndef _CPP_U8GLIB
 #define _CPP_U8GLIB
 
+#include <Arduino.h>
 #include <Print.h>
+
+#ifndef USE_PIN_LIST
+#define USE_PIN_LIST
+#endif
+
 #include "clib/u8g.h"
 
 
