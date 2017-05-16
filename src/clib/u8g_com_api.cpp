@@ -103,6 +103,8 @@ uint8_t u8g_WriteSequenceP(u8g_t *u8g, u8g_dev_t *dev, uint8_t cnt, const uint8_
 #define U8G_ESC_RST(x) 255, (0xc0 | ((x)&0x0f))
 
 */
+
+
 uint8_t u8g_WriteEscSeqP(u8g_t *u8g, u8g_dev_t *dev, const uint8_t *esc_seq)
 {
   uint8_t is_escape = 0;
@@ -110,12 +112,15 @@ uint8_t u8g_WriteEscSeqP(u8g_t *u8g, u8g_dev_t *dev, const uint8_t *esc_seq)
   for(;;)
   {
     value = u8g_pgm_read(esc_seq);
+//	Serial.println(value, HEX);
     if ( is_escape == 0 )
     {
       if ( value != 255 )
       {
         if ( u8g_WriteByte(u8g, dev, value) == 0 )
-          return 0;
+//		{Serial.println("u8g_WriteEscSeqP ret 0");
+	return 0;
+//	}
       }
       else
       {
@@ -127,7 +132,9 @@ uint8_t u8g_WriteEscSeqP(u8g_t *u8g, u8g_dev_t *dev, const uint8_t *esc_seq)
       if ( value == 255 )
       {
         if ( u8g_WriteByte(u8g, dev, value) == 0 )
-          return 0;
+ //        {Serial.println("u8g_WriteEscSeqP ret 0");
+	 return 0;
+//	 }
       }
       else if ( value == 254 )
       {
@@ -168,6 +175,7 @@ uint8_t u8g_WriteEscSeqP(u8g_t *u8g, u8g_dev_t *dev, const uint8_t *esc_seq)
     }
     esc_seq++;
   }
+//  Serial.println("u8g_WriteEscSeqP ret 1"); 
   return 1;
 }
 

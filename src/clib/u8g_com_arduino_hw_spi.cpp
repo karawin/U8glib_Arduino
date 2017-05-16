@@ -427,6 +427,69 @@ uint8_t u8g_com_arduino_hw_spi_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void
 
 #endif /* U8G_ARDUINO_ATMEGA_HW_SPI */
 
+#if defined(ARDUINO_GENERIC_STM32F103C)
+//#include "u8g_arm.h"
+#include <HardWire.h>
+HardWire HWire(1, I2C_FAST_MODE); // I2c1
+const uint16_t SLAVE_ADR = 0x3C;    // == 0x78
+const uint16_t DATA_MODE = 0x40;    // i2c data command
+const uint16_t COMMAND_MODE = 0x00; // i2c command command; 0x80 -- either seems to work
+
+uint16_t CTRL_CMD = 0; 
+
+uint8_t u8g_com_hw_i2c_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void *arg_ptr)
+{
+//  Serial.print("u8g_com_hw_i2c_fn: "); Serial.println(msg,HEX);	
+  switch(msg)
+  {
+    case U8G_COM_MSG_STOP:
+      //STOP THE DEVICE
+    break;
+
+    case U8G_COM_MSG_INIT:
+
+      HWire.begin();
+
+    break;
+
+    case U8G_COM_MSG_ADDRESS:  
+      //SWITCH FROM DATA TO COMMAND MODE (arg_val == 0) for command mode
+
+        CTRL_CMD = (arg_val == 0) ? COMMAND_MODE : DATA_MODE;
+//Serial.print("u8g_com_hw_i2c_fn U8G_COM_MSG_ADDRESS: "); Serial.println(CTRL_CMD);	
+    break;
+
+    case U8G_COM_MSG_RESET:
+      // there's no reset pin .. ~ U8G_I2C_OPT_NO_ACK 
+    break;
+
+    case U8G_COM_MSG_WRITE_BYTE:
+      //WRITE BYTE TO DEVICE
+//Serial.print("u8g_com_hw_i2c_fn U8G_COM_MSG_WRITE_BYTE: "); Serial.println(arg_val,HEX);	
+      HWire.beginTransmission(SLAVE_ADR);    // slave addr
+      HWire.write(CTRL_CMD);                 // cmd
+      HWire.write(arg_val);                  // data
+      HWire.endTransmission();  
+    break;
+
+    case U8G_COM_MSG_WRITE_SEQ:
+    case U8G_COM_MSG_WRITE_SEQ_P:
+   {
+    //WRITE A SEQUENCE OF BYTES TO THE DEVICE
+    register uint8_t *ptr = static_cast<uint8_t *>(arg_ptr);
+//Serial.print("u8g_com_hw_i2c_fn U8G_COM_MSG_WRITE_SEQ: ");Serial.println(arg_val,HEX);	
+
+    HWire.beginTransmission(SLAVE_ADR);
+    HWire.write(CTRL_CMD); 
+    HWire.write(ptr, arg_val); 
+    HWire.endTransmission(); 
+  }
+    break;
+
+  }
+  return 1;
+}
+#endif
 #else /* ARDUINO */
 
 uint8_t u8g_com_arduino_hw_spi_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void *arg_ptr)

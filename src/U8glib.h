@@ -80,6 +80,10 @@ class U8GLIB : public Print
       { initHWSPI(dev, cs, a0, reset); }
     U8GLIB(u8g_dev_t *dev, uint8_t options) 
       { initI2C(dev, options); }
+    U8GLIB(u8g_dev_t *dev, u8g_com_fnptr com_fn, uint8_t options) 
+      { initI2C(dev, options); u8g_InitComFn(&u8g, dev, com_fn);}
+	  
+	  
     U8GLIB(u8g_dev_t *dev, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t en, uint8_t cs1, uint8_t cs2, uint8_t di, uint8_t rw, uint8_t reset) 
       { init8Bit(dev, d0, d1, d2, d3, d4, d5, d6, d7, en, cs1, cs2, di, rw, reset); }
     U8GLIB(u8g_dev_t *dev, uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, uint8_t cs, uint8_t a0, uint8_t wr, uint8_t rd, uint8_t reset) 
@@ -872,6 +876,9 @@ class U8GLIB_SSD1306_128X64 : public U8GLIB
       { }
     U8GLIB_SSD1306_128X64(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_ssd1306_128x64_i2c, options)
+      { }
+    U8GLIB_SSD1306_128X64(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_ssd1306_128x64_i2c,  (u8g_com_fnptr) com_fn,options)
       { }
 };
 
