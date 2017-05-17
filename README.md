@@ -1,7 +1,13 @@
 
 # U8glib
 
-Modified for the stm32 processor
+Modified for the stm32 processor ARDUINO_GENERIC_STM32F103C with ssd1306:
+-------------------------------------------------------------------------
+in declaration part:
+U8GLIB_SSD1306_128X64 u8g;
+in setup:
+uint8_t u8g_com_hw_i2c_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void *arg_ptr);
+U8GLIB_SSD1306_128X64 u8g((u8g_com_fnptr)u8g_com_hw_i2c_fn,U8G_I2C_OPT_NONE);
 
 A graphics library with support for many different monochrome displays.
 
