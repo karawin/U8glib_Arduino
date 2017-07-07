@@ -894,6 +894,9 @@ class U8GLIB_SSD1306_ADAFRUIT_128X64 : public U8GLIB
     U8GLIB_SSD1306_ADAFRUIT_128X64(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_ssd1306_adafruit_128x64_i2c, options)
       { }
+    U8GLIB_SSD1306_ADAFRUIT_128X64(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_ssd1306_adafruit_128x64_i2c,  (u8g_com_fnptr) com_fn,options)
+      { }	  
 };
 
 
@@ -909,6 +912,9 @@ class U8GLIB_SSD1306_128X64_2X : public U8GLIB
     U8GLIB_SSD1306_128X64_2X(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_ssd1306_128x64_2x_i2c, options)
       { }
+    U8GLIB_SSD1306_128X64_2X(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_ssd1306_128x64_2x_i2c,  (u8g_com_fnptr) com_fn,options)
+      { }		  
 };
 
 class U8GLIB_SH1106_128X64 : public U8GLIB 
@@ -922,6 +928,9 @@ class U8GLIB_SH1106_128X64 : public U8GLIB
       { }
     U8GLIB_SH1106_128X64(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_sh1106_128x64_i2c, options)
+      { }
+	U8GLIB_SH1106_128X64(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_sh1106_128x64_i2c,  (u8g_com_fnptr) com_fn,options)
       { }
 };
 
@@ -937,6 +946,9 @@ class U8GLIB_SH1106_128X64_2X : public U8GLIB
     U8GLIB_SH1106_128X64_2X(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_sh1106_128x64_2x_i2c, options)
       { }
+	U8GLIB_SH1106_128X64_2X(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_sh1106_128x64_2x_i2c,  (u8g_com_fnptr) com_fn,options)
+      { }  
 };
 
 class U8GLIB_SSD1309_128X64 : public U8GLIB 
@@ -951,6 +963,9 @@ class U8GLIB_SSD1309_128X64 : public U8GLIB
     U8GLIB_SSD1309_128X64(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_ssd1309_128x64_i2c, options)
       { }
+	U8GLIB_SSD1309_128X64(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_ssd1309_128x64_i2c,  (u8g_com_fnptr) com_fn,options)
+      { }  	  
 };
 
 class U8GLIB_SSD1306_128X32 : public U8GLIB 
@@ -965,6 +980,9 @@ class U8GLIB_SSD1306_128X32 : public U8GLIB
     U8GLIB_SSD1306_128X32(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_ssd1306_128x32_i2c, options)
       { }
+	U8GLIB_SSD1306_128X32(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_ssd1306_128x32_i2c,  (u8g_com_fnptr) com_fn,options)
+      { }  	  	  
 };
 
 class U8GLIB_SSD1306_128X32_2X : public U8GLIB 
@@ -979,6 +997,9 @@ class U8GLIB_SSD1306_128X32_2X : public U8GLIB
     U8GLIB_SSD1306_128X32_2X(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_ssd1306_128x32_2x_i2c, options)
       { }
+	U8GLIB_SSD1306_128X32_2X(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_ssd1306_128x32_2x_i2c,  (u8g_com_fnptr) com_fn,options)
+      { }  	 
 };
 
 class U8GLIB_SSD1306_64X48 : public U8GLIB 
@@ -993,6 +1014,9 @@ class U8GLIB_SSD1306_64X48 : public U8GLIB
     U8GLIB_SSD1306_64X48(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_ssd1306_64x48_i2c, options)
       { }
+	U8GLIB_SSD1306_64X48(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_ssd1306_64x48_i2c,  (u8g_com_fnptr) com_fn,options)
+      { }  	 	  
 };
 
 class U8GLIB_SSD1306_64X48_2X : public U8GLIB 
@@ -1007,6 +1031,9 @@ class U8GLIB_SSD1306_64X48_2X : public U8GLIB
     U8GLIB_SSD1306_64X48_2X(uint8_t options = U8G_I2C_OPT_NONE) 
       : U8GLIB(&u8g_dev_ssd1306_64x48_2x_i2c, options)
       { }
+	U8GLIB_SSD1306_64X48_2X(u8g_com_fnptr com_fn,uint8_t options  ) 
+      : U8GLIB(&u8g_dev_ssd1306_64x48_2x_i2c,  (u8g_com_fnptr) com_fn,options)
+      { }  	  
 };
 
 
