@@ -192,7 +192,7 @@ static const uint8_t u8g_dev_sh1106_128x64_data_start[] PROGMEM = {
   U8G_ESC_ADR(0),           /* instruction mode */
   U8G_ESC_CS(1),             /* enable chip */
   0x010,		/* set upper 4 bit of the col adr to 0 */
-  0x002,		/* set lower 4 bit of the col adr to 2 (centered display with sh1106)  */
+  0x003,		/* set lower 4 bit of the col adr to 3 (centered display with sh1106)  */
   U8G_ESC_END                /* end of sequence */
 };
 
