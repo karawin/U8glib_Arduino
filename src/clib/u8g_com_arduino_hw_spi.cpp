@@ -428,9 +428,18 @@ uint8_t u8g_com_arduino_hw_spi_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void
 #endif /* U8G_ARDUINO_ATMEGA_HW_SPI */
 
 #if defined(ARDUINO_GENERIC_STM32F103C)
-//#include "u8g_arm.h"
-#include <HardWire.h>
-HardWire HWire(1, I2C_FAST_MODE); // I2c1
+/ old STMDUINO
+//#include <HardWire.h>
+//HardWire HWire(1, I2C_FAST_MODE); // I2c1
+
+// transient stmduino
+//#include <Wire.h>
+//Wire HWire(1, I2C_FAST_MODE); // I2c1
+
+//New stmduino (15 dec 2017)
+#include <Wire.h>
+TwoWire HWire(1, I2C_FAST_MODE); // I2c1
+
 const uint16_t SLAVE_ADR = 0x3C;    // == 0x78
 const uint16_t DATA_MODE = 0x40;    // i2c data command
 const uint16_t COMMAND_MODE = 0x00; // i2c command command; 0x80 -- either seems to work
