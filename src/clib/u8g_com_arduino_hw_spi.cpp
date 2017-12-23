@@ -428,7 +428,7 @@ uint8_t u8g_com_arduino_hw_spi_fn(u8g_t *u8g, uint8_t msg, uint8_t arg_val, void
 #endif /* U8G_ARDUINO_ATMEGA_HW_SPI */
 
 #if defined(ARDUINO_GENERIC_STM32F103C)
-/ old STMDUINO
+// old STMDUINO
 //#include <HardWire.h>
 //HardWire HWire(1, I2C_FAST_MODE); // I2c1
 
